@@ -1,0 +1,43 @@
+  <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-lg text-center">
+      <h1 class="text-2xl font-bold sm:text-3xl">Commencez dès aujourd'hui !</h1>
+    </div>
+  
+    <form [formGroup]="loginFormGroup" method="post" class="mx-auto mb-0 mt-8 max-w-md space-y-4">
+      <div>
+        <label for="username" class="sr-only">Nom d'utilisateur</label>
+  
+        <div class="relative">
+          <input type="name" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm form-control form-font mt-1 mb-3"
+                 [ngClass]="{'border-red-500': submited && loginFormGroup.controls['username'].errors}" formControlName="username" placeholder="Entrez votre nom d'utilisateur">
+          <div *ngIf="submited && loginFormGroup.get('username')?.errors" class="text-red-500 text-xs mt-1">
+            <div *ngIf="loginFormGroup.get('username')!.errors?.['required']">
+              Nom d'utilisateur requis
+            </div>
+            <div *ngIf="loginFormGroup.get('username')!.errors?.['pattern']">
+              Veuillez entrer un nom d'utilisateur valide
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div>
+        <label for="password" class="sr-only">Mot de passe</label>
+  
+        <div class="relative">
+          <input type="password" class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm form-control form-font mt-1 mb-3"
+                 [ngClass]="{'border-red-500': submited && loginFormGroup.controls['password'].errors}" formControlName="password" placeholder="Entrez votre mot de passe">
+          <div *ngIf="submited && loginFormGroup.get('password')?.errors" class="text-red-500 text-xs mt-1">
+            <div *ngIf="submited && loginFormGroup.get('password')?.errors">
+              Mot de passe requis
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="text-center"> <!-- Utilisez une classe appropriée pour centrer le bouton -->
+        <button type="button" (click)="onLogin()" class="inline-block rounded-lg bg-blue-500 px-5 py-3 text-sm font-medium text-white">Connexion</button>
+      </div>
+    </form>
+  </div>
+  
